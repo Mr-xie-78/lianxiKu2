@@ -3,7 +3,7 @@
 */
 const express = require('express');
 const userRouter = require('./router/user')
-const ejs = require('ejs')
+
 const bodyParser = require('body-parser')
 const app = express();
 app.listen(8080,()=>{
@@ -11,8 +11,8 @@ app.listen(8080,()=>{
 })
 
 app.use(bodyParser.urlencoded({extended:false}))
-app.set('view engine',ejs)
+app.set('view engine','ejs')
 // 处理静态资源
 app.use('/assets',express.static('assets'))
 
-app.use('/admin/user')
+app.use('/admin/user',userRouter)
