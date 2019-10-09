@@ -9,4 +9,5 @@ const controller = require('../controller/category')
 // 获取文章分类页面
 router.get('/categories.html',controller.getCategoriesPage)
 
+router.get('/getAllCategory',controller.getAllCategory)
 module.exports = router

@@ -1,15 +1,7 @@
 /*
    负责处理数据
 */
-const mysql = require('mysql')
-
-var connection = mysql.createConnection({
-                  host:'127.0.0.1',
-                  user:'root',
-                  port:3306,
-                  password:'root',
-                  database:'albx_38'
-               })
+let {connection} = require('./sql')
 module.exports = {
    getUserByEmail(email,callback){
       let sql = `SELECT * FROM users WHERE email='${email}'`;
