@@ -17,6 +17,9 @@ module.exports = {
          if(r){
             // 判断密码
             if(r.password == password){
+               // 记录一下，确实登录成功了!!!!
+               req.session.isLogin = true;
+               
                res.send({
                   code:200,
                   msg:'ok'

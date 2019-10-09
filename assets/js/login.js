@@ -44,6 +44,6 @@ var inLogin = false
 $('.modal-footer').on('click','.btn',function(){
     if(inLogin){
         // 记得这里跳转是通过url跳转的
-        location.href = '/admin/index.html' 
+        location.href = 'http://127.0.0.1:9090/admin/index.html' 
     }
 })
