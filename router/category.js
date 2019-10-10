@@ -10,4 +10,7 @@ const controller = require('../controller/category')
 router.get('/categories.html',controller.getCategoriesPage)
 
 router.get('/getAllCategory',controller.getAllCategory)
+
+// 新增的请求
+router.post('/addNewCategory',controller.addNewCategory)
 module.exports = router
