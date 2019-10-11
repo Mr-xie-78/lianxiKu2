@@ -13,4 +13,16 @@ router.get('/getAllCategory',controller.getAllCategory)
 
 // 新增的请求
 router.post('/addNewCategory',controller.addNewCategory)
+
+// 删除请求
+router.get('/delCategory',controller.delCategory)
+
+// 修改请求
+router.get('/xiugaiPageById',controller.xiugaiPageById)
+
+// 恢复请求
+router.get('/huifuCategory',controller.huifuCategory)
+
+// 修改请求
+router.post('/xiugaiCategoryById',controller.xiugaiCategoryById)
 module.exports = router

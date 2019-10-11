@@ -42,7 +42,11 @@
                 </div>
               </div>
             <div class="form-group">
-              <input type="button" value="添加" class="btn btn-primary">
+              <input type="button" value="添加" class="add btn btn-primary">
+            </div>
+            <div class="form-group" hidden>
+              <input type="button" value="保存" class="baocun btn btn-primary">
+              <input type="button" value="取消" class="quxiao btn btn-primary">
             </div>
           </form>
         </div>
@@ -105,8 +109,12 @@
           <i class="fa {{item.classname}}"></i>
         </td>
         <td class="text-center">
-          <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
-          <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+          <a href="javascript:;" class="btn btn-info btn-xs" id="xiugai">编辑</a>
+          {{if item.isDelete ==0}}
+          <a href="javascript:;" class="btn btn-danger btn-xs" id="del">删除</a>
+          {{else if item.isDelete ==1}}
+          <a href="javascript:;" class="btn btn-success btn-xs" id="huifu">恢复</a>
+          {{/if}}
         </td>
       </tr>
     {{/each}}

@@ -5,7 +5,7 @@ $(function(){
   let index = location.href.lastIndexOf('/')
 //   console.log(index)
   let href = location.href.substring(index)
-  console.log(href);
+  // console.log(href);
     if(href === '/categories.html'){
         $('#menu-posts').removeClass('collapse')
     }
