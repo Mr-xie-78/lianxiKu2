@@ -6,6 +6,7 @@ const userRouter = require('./router/user')
 const indexRouter = require('./router/index')
 const categoryRouter = require('./router/category')
 const commentsRouter = require('./router/comments')
+const postsRouter = require('./router/posts')
 
 // 引入express-session模块
 const session = require('express-session')
@@ -43,3 +44,5 @@ app.use('/admin',indexRouter)
 app.use('/admin/category',categoryRouter)
 
 app.use('/admin/comments',commentsRouter)
+
+app.use('/admin/posts',postsRouter)
