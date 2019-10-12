@@ -11,4 +11,6 @@ router.get('/login.html',controller.getLoginPage)
 
 router.post('/userLogin',controller.userLogin)
 
+router.get('/users.html',controller.getUsersPage)
+
 module.exports = router

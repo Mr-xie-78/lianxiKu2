@@ -37,5 +37,9 @@ module.exports = {
             })
          }
       })
+   },
+   // 获取用户页面
+   getUsersPage(req,res){
+      res.render('admin/users')
    }
 }

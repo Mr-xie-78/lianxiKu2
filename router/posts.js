@@ -12,5 +12,8 @@ router.get('/posts.html',controller.getPostsPage)
 // 获取数据
 router.get('/getTenData',controller.getTenData)
 
+// 获取PostsAdd页面
+router.get('/getPostsAdd.html',controller.getPostsAdd)
+
 
 module.exports = router

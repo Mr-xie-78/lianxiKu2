@@ -15,5 +15,8 @@ module.exports = {
                 res.send(respeon)
             })  
         })
+    },
+    getPostsAdd(req,res){
+        res.render('admin/post-add')
     }
 }
