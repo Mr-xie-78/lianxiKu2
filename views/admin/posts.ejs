@@ -15,18 +15,19 @@
       <!-- show when multiple checked -->
       <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
       <form class="form-inline">
-        <select name="" class="form-control input-sm">
+        <select id="name" name="" class="form-control input-sm">
           <option value="">所有分类</option>
           <option value="">未分类</option>
         </select>
-        <select name="" class="form-control input-sm">
-          <option value="">所有状态</option>
-          <option value="">草稿</option>
-          <option value="">已发布</option>
+        <select id="status" name="" class="form-control input-sm">
+          <option value="all">所有状态</option>
+          <option value="drafted">草稿</option>
+          <option value="published">已发布</option>
+          <option value="trashed">已作废</option>
         </select>
-        <button class="btn btn-default btn-sm">筛选</button>
+        <button id="button" class="btn btn-default btn-sm">筛选</button>
       </form>
-      <ul id="fenyeBtn" class="pagination pagination-sm pull-right">
+      <ul id="page" class="pagination pagination-sm pull-right">
         <li><a href="#">上一页</a></li>
         <li><a href="#">1</a></li>
         <li><a href="#">2</a></li>
@@ -65,13 +66,13 @@
         <td>{{item.name}}</td>
         <td class="text-center">{{item.created}}</td>
         <td class="text-center">
-          {{if item.status==draffed}}
-          草稿
-          {{else if item.status==published}}
-          已发布
-          {{else if item.status==trashed}}
-          已作废
-          {{/if}}
+          {{if item.status == 'drafted'}}
+        草稿
+        {{else if item.status == 'published'}}
+        已发布
+        {{else if item.status == 'trashed'}}
+        已作废
+        {{/if}}
         </td>
         <td class="text-center">
           <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>

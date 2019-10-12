@@ -15,5 +15,11 @@ router.get('/getTenData',controller.getTenData)
 // 获取PostsAdd页面
 router.get('/getPostsAdd.html',controller.getPostsAdd)
 
+// 获取分类数据
+router.get('/getFengLei',controller.getFengLei)
+
+// 筛选按钮请求
+
+router.get('/getNewPoatByData',controller.getNewPoatByData)
 
 module.exports = router

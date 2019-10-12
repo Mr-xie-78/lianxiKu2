@@ -25,5 +25,29 @@ module.exports = {
         //   获取的只有一条数据
           callback(result[0]);
         })
+    },
+    getFengLei(callback){
+      let sql = `SELECT id,\`name\` FROM categories`
+      connection.query(sql,(e,r)=>{
+        e && console.log(e)
+        callback(r)
+      })
+    },
+    getNewPoatByData(sql,callback){
+      connection.query(sql,(e,r)=>{
+        e && console.log(e)
+        callback(r)
+      })
+    },
+    getPostCountByFilter(condition,callback){
+      let sql = `SELECT count(id) as total FROM posts`
+      // 还需要判断condition是否有值，如果是刷新页面是不会有值的
+      if(condition !== undefined){
+        sql += condition
+      }
+      connection.query(sql,(err,result)=>{
+        err && console.log(err);
+        callback(result[0]);
+      })
     }
 }
