@@ -19,6 +19,7 @@ module.exports = {
             if(r.password == password){
                // 记录一下，确实登录成功了!!!!
                req.session.isLogin = true;
+               req.session.userData = r
                
                res.send({
                   code:200,

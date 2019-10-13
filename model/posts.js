@@ -49,5 +49,16 @@ module.exports = {
         err && console.log(err);
         callback(result[0]);
       })
+    },
+    InsentData(data,callback){
+      let sql = `INSERT INTO posts
+      SET title='${data.title}',content='${data.content}',slug='${data.slug}',
+      feature='${data.feature}',category_id=${data.category},
+      created='${data.created}',\`status\`='${data.status}',
+      user_id=${data.user_id}`;
+      connection.query(sql,(e,r)=>{
+        e && console.log(e)
+        callback(r)
+      })
     }
 }

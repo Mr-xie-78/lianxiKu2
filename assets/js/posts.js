@@ -67,7 +67,7 @@ $(function(){
     $('#button').on('click',function(e){
         e.preventDefault()
         debugger
-        // 把分页插件摧毁，在请求回来之后，重新生成
+        // 把分页插件摧毁，在请求回来之后，重新生成,ul的id不要写错了
         $('#page').twbsPagination('destroy');
         // 回到第一页
         getPostByPageAndFilter(1,10);

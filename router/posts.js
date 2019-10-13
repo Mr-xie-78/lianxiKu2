@@ -22,4 +22,10 @@ router.get('/getFengLei',controller.getFengLei)
 
 router.get('/getNewPoatByData',controller.getNewPoatByData)
 
+// 上传文件
+router.post('/uploadFile',controller.uploadFile)
+
+// 添加数据
+router.post('/InsentData',controller.InsentData)
+
 module.exports = router

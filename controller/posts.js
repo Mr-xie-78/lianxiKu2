@@ -1,4 +1,5 @@
 const modle = require('../model/posts')
+const formidable = require('formidable')
 
 module.exports = {
     getPostsPage(req,res){
@@ -62,5 +63,39 @@ module.exports = {
             res.send(response)
         })
       })
+    },
+    uploadFile(req,res){
+        let form = new formidable.IncomingForm();
+        // 最好先设置一下上传的指定目录和保持上传的文件的后缀
+        form.uploadDir = __dirname + '/../uploads'; // 设定上传的目录
+        form.keepExtensions = true; // 设置上传的文件保持后缀
+        // 3.使用创建的对象解析req请求
+        form.parse(req,(err,fields,files)=>{
+            // err 如果出错就是对象， fields 除了文件以外的其他字段 ， files 就是上传过来的文件
+            // console.log(err);
+            // console.log(fields);
+            // console.log(files);
+            if(!err){
+                let index = files.suibian.path.indexOf('uploads')
+                let src = files.suibian.path.substring(index-1)
+                // console.log(uploadlujin)
+                // 返回路径
+                res.send({code:200,msg:'ok',src})
+            }else{
+                res.send({code:500,msg:'上传失败'})
+            }
+        })
+    },
+    InsentData(req,res){
+        // console.log(req.session.userData)
+        req.body.user_id = req.session.userData.id
+        modle.InsentData(req.body,r=>{
+            // console.log(r)
+            if(r.affectedRows == 1){
+                res.send({code:200,msg:'ok'})
+            }else{
+                res.send({code:500,msg:'插入失败'})
+            }
+        })
     }
 }
