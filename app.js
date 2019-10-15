@@ -9,6 +9,9 @@ const commentsRouter = require('./router/comments')
 const postsRouter = require('./router/posts')
 const url = require('url')
 
+// 引入处理前台页面的路由
+const font_pageRouter = require('./router/font_page')
+
 // 引入express-session模块
 const session = require('express-session')
 const bodyParser = require('body-parser')
@@ -41,7 +44,7 @@ app.use('/uploads',express.static('uploads'))
 app.use((req,res,next)=>{
   let {pathname} = url.parse(req.url)
   // 如果是登录页就不用跳转
-  if(pathname == '/admin/user/login.html' || pathname == '/admin/user/userLogin'){
+  if(pathname == '/admin/user/login.html' || pathname == '/admin/user/userLogin' || !pathname.startsWith('/admin')){
     next()
   }else{
     // 判断是否是第一次登录
@@ -64,3 +67,6 @@ app.use('/admin/category',categoryRouter)
 app.use('/admin/comments',commentsRouter)
 
 app.use('/admin/posts',postsRouter)
+
+// 前台页面路由
+app.use(font_pageRouter)
