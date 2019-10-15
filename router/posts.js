@@ -28,4 +28,15 @@ router.post('/uploadFile',controller.uploadFile)
 // 添加数据
 router.post('/InsentData',controller.InsentData)
 
+// 删除数据请求
+router.get('/delPostById',controller.delPostById)
+
+// 渲染编辑页面
+router.get('/getPostByIdPage',controller.getPostByIdPage)
+
+// 监听修改
+router.post('/editPostById',controller.editPostById)
+
+// 批量删除
+router.get('/delSomePost',controller.delSomePost)
 module.exports = router

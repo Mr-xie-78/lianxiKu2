@@ -7,6 +7,7 @@ const indexRouter = require('./router/index')
 const categoryRouter = require('./router/category')
 const commentsRouter = require('./router/comments')
 const postsRouter = require('./router/posts')
+const url = require('url')
 
 // 引入express-session模块
 const session = require('express-session')
@@ -35,6 +36,23 @@ app.set('view engine','ejs')
 // 处理静态资源
 app.use('/assets',express.static('assets'))
 app.use('/uploads',express.static('uploads'))
+
+// 实现登录权限的控制
+app.use((req,res,next)=>{
+  let {pathname} = url.parse(req.url)
+  // 如果是登录页就不用跳转
+  if(pathname == '/admin/user/login.html' || pathname == '/admin/user/userLogin'){
+    next()
+  }else{
+    // 判断是否是第一次登录
+    if(req.session.isLogin){
+      // 如果登陆过
+      next()
+    }else{
+      res.send(`<script>location.href = '/admin/user/login.html'</script>`)
+    }
+  }
+})
 
 // 入口请求处理
 app.use('/admin/user',userRouter)

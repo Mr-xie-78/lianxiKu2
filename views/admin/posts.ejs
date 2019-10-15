@@ -13,7 +13,7 @@
     </div> -->
     <div class="page-action">
       <!-- show when multiple checked -->
-      <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
+      <a id="somedel"class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
       <form class="form-inline">
         <select id="name" name="" class="form-control input-sm">
           <option value="">所有分类</option>
@@ -75,8 +75,8 @@
         {{/if}}
         </td>
         <td class="text-center">
-          <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
-          <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+          <a id="edit" href="/admin/posts/getPostsAdd.html?id={{item.id}}" class="btn btn-default btn-xs">编辑</a>
+          <a id="del" href="javascript:;" class="btn btn-danger btn-xs">删除</a>
         </td>
       </tr>
     {{/each}}

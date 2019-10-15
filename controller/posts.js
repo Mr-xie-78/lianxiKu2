@@ -76,9 +76,12 @@ module.exports = {
             // console.log(fields);
             // console.log(files);
             if(!err){
+                // 上传文件一定要注意斜线的问题！！！！！！！！！！
                 let index = files.suibian.path.indexOf('uploads')
-                let src = files.suibian.path.substring(index-1)
-                // console.log(uploadlujin)
+                let src = '/uploads/'+ files.suibian.path.substring(index).slice(8)
+                // 例如 '/uploads/aaaa.jpg'
+
+                // console.log(src)
                 // 返回路径
                 res.send({code:200,msg:'ok',src})
             }else{
@@ -89,6 +92,8 @@ module.exports = {
     InsentData(req,res){
         // console.log(req.session.userData)
         req.body.user_id = req.session.userData.id
+        // console.log(req.body);
+        
         modle.InsentData(req.body,r=>{
             // console.log(r)
             if(r.affectedRows == 1){
@@ -96,6 +101,38 @@ module.exports = {
             }else{
                 res.send({code:500,msg:'插入失败'})
             }
+        })
+    },
+    delPostById(req,res){
+        let {id} = req.query
+        modle.delPostById(id,r=>{
+            if(r.affectedRows == 1){
+                res.send({code:200,msg:'ok'})
+            }else{
+                res.send({code:500,msg:'删除失败'})
+            }
+        })
+    },
+    // 获取数据，渲染修改页面
+    getPostByIdPage(req,res){
+        // 因为传进来的是   data:{id}
+        let id = req.query.id
+        modle.getPostByIdPage(id,data=>{
+            let response = data? {code:200,msg:'ok',data}:{code:400,msg:'获取数据失败'}
+            res.send(response)
+        })
+    },
+    editPostById(req,res){
+        req.body.user_id = req.session.userData.id
+        modle.editPostById(req.body,(r)=>{
+            res.send(r.affectedRows==1? {code:200,msg:'ok'}:{code:500,msg:'修改失败'})
+        })
+    },
+    delSomePost(req,res){
+        let id = req.query.ids.join(',')
+        // console.log(id)
+        modle.delSomePost(id,r=>{
+            res.send(r.affectedRows==req.query.ids.length? {code:200,msg:'ok'}:{code:500,msg:'删除失败'})
         })
     }
 }

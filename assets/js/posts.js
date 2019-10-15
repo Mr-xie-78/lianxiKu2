@@ -108,4 +108,82 @@ $(function(){
 
     // 刷新页面调用，已经封装好了
     getPostByPageAndFilter(1,10)
+
+
+
+    // 给删除按钮添加点击事件
+    $('tbody').on('click','#del',function(){
+        if(!confirm('您确定要删除吗？')) return;
+
+        // 获取id，发ajax请求
+        let id = $(this).parents('tr').attr('data-id')
+        // console.log(id);
+        
+        $.ajax({
+            type:'get',
+            url:'/admin/posts/delPostById',
+            data:{
+                id
+            },
+            success:(res)=>{
+                if(res.code==200){
+                    console.log(res)
+                    $(this).parents('tr').remove()
+                }else{
+                    console.log(res.msg);
+                }
+            }
+        })
+    })
+
+    // 给全选checkbox添加点击事件
+    $('thead [type="checkbox"]').on('click',function(){
+        let bl = $('thead [type="checkbox"]').prop('checked')
+        $('tbody [type="checkbox"]').prop('checked',bl)
+        bl ? $('#somedel').show():$('#somedel').hide()
+    })
+
+    // 给单个checkbox添加点击事件
+    $('tbody').on('click','[type="checkbox"]',function(){
+        let bl = $(this).prop('checked')
+        $(this).prop('checked',bl)
+        if($('tbody [type="checkbox"]:checked').length ===$('tbody [type="checkbox"]').length){
+            $('#somedel').prop('checked',true)
+        }else{
+            $('#somedel').prop('checked',false)
+        }
+        if($('tbody [type="checkbox"]:checked').length>1){
+            $('#somedel').show()
+        }else{
+            $('#somedel').hide()
+        }
+    })
+
+    // 给批量删除添加点击事件
+    $('#somedel').on('click',function(){
+        let ids = []
+        // 用foreach无法遍历伪数组，得用each,jq方法
+        $('tbody [type="checkbox"]:checked').each((i,e)=>{
+            // e是按钮，而id存储在tr身上，要从tr那里得到id
+            let id = $(e).parents('tr').attr('data-id');
+            ids.push(id);
+          });
+        // console.log(ids)
+        // 得到id，发请求
+        $.ajax({
+            type:'get',
+            data:{
+                ids
+            },
+            url:'/admin/posts/delSomePost',
+            success(res){
+                if(res.code==200){
+                    console.log(res)
+                    $('tbody [type="checkbox"]:checked').parents('tr').remove()
+                }else{
+                    console.log(res.msg);
+                }
+            }
+        })
+    })
 })
