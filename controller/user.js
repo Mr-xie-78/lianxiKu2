@@ -23,7 +23,11 @@ module.exports = {
                
                res.send({
                   code:200,
-                  msg:'ok'
+                  msg:'ok',
+                  data:{
+                     nickname:r.nickname,
+                     avatar:r.avatar
+                  }
                })
             }else{
                res.send({
@@ -42,5 +46,9 @@ module.exports = {
    // 获取用户页面
    getUsersPage(req,res){
       res.render('admin/users')
+   },
+   outLogin(req,res){
+      req.session.destroy();
+      res.send({code:200,msg:'ok'})
    }
 }

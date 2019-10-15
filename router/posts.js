@@ -39,4 +39,5 @@ router.post('/editPostById',controller.editPostById)
 
 // 批量删除
 router.get('/delSomePost',controller.delSomePost)
+
 module.exports = router

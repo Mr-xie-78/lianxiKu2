@@ -13,4 +13,7 @@ router.post('/userLogin',controller.userLogin)
 
 router.get('/users.html',controller.getUsersPage)
 
+// 点击退出，退出登录
+router.get('/outLogin',controller.outLogin)
+
 module.exports = router

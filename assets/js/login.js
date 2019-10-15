@@ -27,9 +27,12 @@ $('.btn').on('click',function(){
         // console.log(res);
             if(res.code === 200){
                 // 登录成功
+                // 把数据存到本地存储上
+                localStorage.setItem("shuju",JSON.stringify(res.data))
                 $('.container-fluid').text('登录成功');
                 $("#modelId").modal();
                 inLogin = true
+
             }else{
                 // 提示失败
                 $('.container-fluid').text('登录失败');
