@@ -9,5 +9,8 @@ router.get('/list.html',controller.getListPage)
 
 router.get('/detail.html',controller.getDetailPage)
 
+// 监听获取导航数据请求
+router.get('/getNavigatorList',controller.getNavigatorList)
+
 
 module.exports = router
