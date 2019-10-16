@@ -8,10 +8,11 @@ $(function(){
             if(res.code == 200){
                 let html = ''
                 res.data.forEach(e => {
-                    html += `<li><a href="javascript:;"><i class="fa ${e.classname}"></i>${e.name}</a></li>`
+                    html += `<li><a href="/list.html?id=${e.id}"><i class="fa ${e.classname}"></i>${e.name}</a></li>`
                 });
                 $('.nav').html(html)
             }
         }
     })
+    
 })

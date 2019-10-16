@@ -12,5 +12,8 @@ router.get('/detail.html',controller.getDetailPage)
 // 监听获取导航数据请求
 router.get('/getNavigatorList',controller.getNavigatorList)
 
+// 监听主页的最新发布
+router.get('/getLastedPosts',controller.getLastedPosts)
+
 
 module.exports = router
